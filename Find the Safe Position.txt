@@ -1,0 +1,37 @@
+class Solution {
+    static int safePos(int n, int k) {
+        // code here
+
+	// Josephus Problem
+        LinkedList<Integer> list = new LinkedList<>();
+        for(int i = 1; i <= n; i++)
+        {
+            list.add(i);
+        }
+        
+        Iterator<Integer> it = list.iterator();
+        while(list.size() > 1)
+        {
+            int count = 0;
+            while(count < k)
+            {
+                while(it.hasNext() && count < k)
+                {
+                    it.next();
+                    count++;
+                }
+                
+                if(count < k)
+                {
+                    it = list.iterator();
+                    it.next();
+                    count++;
+                }
+            }
+            it.remove();
+           // System.out.println(list);
+        }
+        
+        return list.getFirst();
+    }
+}
