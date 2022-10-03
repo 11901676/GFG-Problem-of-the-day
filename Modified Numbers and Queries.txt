@@ -1,0 +1,41 @@
+class Solution
+{
+    
+    public int sumOfAll(int l, int r)
+    {
+        // code here
+        int sum = 0;
+        int i = l;
+        for(i = l; i <= r;i++)
+        {
+            int number = i;
+            if(number == 1)
+            {
+                sum = sum + 1;
+            }
+            
+            
+            boolean isPrime[] = new boolean[number + 1];
+            Arrays.fill(isPrime, true);
+            
+            for(int j = 2; j <= number; j++)
+            {
+                if(isPrime[j])
+                {
+                    if(number % j == 0)
+                    {
+                        sum = sum + j;
+                    }
+                    
+                    // mark all the multiples as false
+                    for(int k = j*j; k <= number; k = k + j)
+                    {
+                        isPrime[k] = false;
+                    }
+                }
+            }
+        }
+        
+        return sum;
+    }
+}
